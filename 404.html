@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · The Infinity Mirror · Ethereal Connections Co.</title>
+<meta name="description" content="The path you followed didn't resolve. Return to the Mirror.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --field: #0a0e14;
+    --field-elev: #11161e;
+    --surface: rgba(255, 255, 255, 0.035);
+    --surface-strong: rgba(255, 255, 255, 0.06);
+    --border: rgba(110, 200, 190, 0.14);
+    --border-strong: rgba(110, 200, 190, 0.28);
+    --text: #e8e3d8;
+    --text-muted: #9a9488;
+    --text-faint: #6b665d;
+    --teal: #6ec8be;
+    --teal-deep: #4a9991;
+    --gold: #c9a857;
+    --gold-deep: #9c8138;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--field);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+
+  /* Ambient field lighting */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 35%, rgba(110, 200, 190, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 25% 75%, rgba(201, 168, 87, 0.04) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle film grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+  }
+
+  /* Diamond glyph — breathing alpha */
+  .diamond-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 2.4rem;
+    opacity: 0;
+    animation: appear 1s ease 0.2s forwards, breathe 4s ease-in-out 1.2s infinite alternate;
+  }
+  .diamond-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--teal);
+    stroke-width: 1;
+  }
+  @keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 0.3; }
+  }
+  @keyframes breathe {
+    0%   { opacity: 0.18; transform: scale(1); }
+    100% { opacity: 0.4;  transform: scale(1.04); }
+  }
+
+  .code {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    line-height: 1.18;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.9s forwards;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .body-copy {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2.4rem;
+    max-width: 46ch;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.2s forwards;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    margin: 0 auto 2.4rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1.5s forwards;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.9rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.7s forwards;
+  }
+
+  .btn {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 14px 26px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  .btn.primary {
+    color: var(--field);
+    background: var(--teal);
+    border: 1px solid var(--teal);
+  }
+  .btn.primary:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(201, 168, 87, 0.18);
+    transform: translateY(-1px);
+  }
+  .btn.ghost {
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .btn.ghost:hover {
+    color: var(--teal);
+    border-color: var(--border-strong);
+    background: var(--surface-strong);
+  }
+
+  .doctrine {
+    margin-top: 4.2rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 2.0s forwards;
+  }
+
+  .sig {
+    margin-top: 1.2rem;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    opacity: 0;
+    animation: fadeUp 0.6s ease 2.2s forwards;
+  }
+  .sig a {
+    color: var(--text-faint);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(110, 200, 190, 0.15);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .sig a:hover {
+    color: var(--teal);
+    border-bottom-color: var(--teal);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<main class="container">
+  <div class="diamond-icon" aria-hidden="true">
+    <svg viewBox="0 0 40 40">
+      <path d="M20 2 L38 16 L20 38 L2 16 Z"/>
+      <path d="M2 16 L38 16"/>
+      <path d="M20 2 L12 16"/>
+      <path d="M20 2 L28 16"/>
+      <path d="M12 16 L20 38"/>
+      <path d="M28 16 L20 38"/>
+    </svg>
+  </div>
+
+  <div class="code">404 · Path did not resolve</div>
+
+  <h1>The reflection is <em>elsewhere.</em></h1>
+
+  <p class="body-copy">
+    The path you followed doesn't resolve to a known coordinate in this Mirror.
+    The architecture hasn't moved — only the angle of view. Return to the surface
+    and try again, or carry the question to the larger work at ECCO.
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="actions">
+    <a class="btn primary" href="/">Return to the Mirror</a>
+    <a class="btn ghost" href="https://etherealconnectionsco.com">Visit ECCO</a>
+  </div>
+
+  <div class="doctrine">
+    Provenance Architecture for a single human life.
+  </div>
+
+  <div class="sig">
+    The Infinity Mirror · <a href="https://etherealconnectionsco.com">etherealconnectionsco.com</a> · Denver · 2026
+  </div>
+</main>
+
+</body>
+</html>
