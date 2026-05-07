@@ -26,3 +26,11 @@ yarn-error.log*
 
 # Logs
 *.log
+
+# Python (render_pdf.py local tool)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.python-version
